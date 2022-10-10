@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>    
+    <script type="text/javascript" src="js/funciones.js"></script>
+
+
+    <title>RETO 3 Sebastian Avendaño Garcia</title>
+</head>
+<body>
+    <em>
+        <h1>Motorbike Rental</h1>
+        </em>
+        <div>
+            <h1>Category</em></h1>
+    
+            <input type="text" id="nameCategory" placeholder="Name Category">
+            <input type="text" id="descripcionCategory" placeholder="Descripcion Category">
+            <br>
+            <br>
+            <button onclick="traerInformacionCategory()">Consultar</button>
+            <button onclick="guardarInformacionCategory()">Guardar</button>
+           
+        </div> 
+        <br>
+        <div id="resultadoCategory"></div>
+
+        <div>
+            <h1>Client</em></h1>
+    
+            <input type="text" id="emailClient" placeholder="Email Client">
+            <input type="text" id="passwordClient" placeholder="Password Client">
+            <input type="text" id="nameClient" placeholder="Name Client">
+            <input type="text" id="ageClient" placeholder="Age Client">
+            <br>
+            <br>
+            <button onclick="traerInformacionClient()">Consultar</button>
+            <button onclick="guardarInformacionClient()">Guardar</button>
+           
+        </div> 
+        <br>
+        <div id="resultadoClient"></div>
+
+        <div>
+            <h1>Motorbike</em></h1>
+    
+            <input type="text" id="brandMotorbike" placeholder="Brand Motorbike">
+            <input type="text" id="year_bMotorbike" placeholder="Year_b Motorbike">
+            <input type="text" id="descriptionMotorbike" placeholder="Description Motorbike">
+            <input type="text" id="nameMotorbike" placeholder="Name Motorbike">
+            <br>
+            <br>
+            <button onclick="traerInformacionMotorbike()">Consultar</button>
+            <button onclick="guardarInformacionMotorbike()">Guardar</button>
+           
+        </div> 
+        <br>
+        <div id="resultadoMotorbike"></div>
+
+        <div>
+            <h1>Message</em></h1>
+    
+            <input type="text" id="messageText" placeholder="Message Text">            
+            <br>
+            <br>
+            <button onclick="traerInformacionMessage()">Consultar</button>
+            <button onclick="guardarInformacionMessage()">Guardar</bustton>
+           
+        </div> 
+        <br>
+        <div id="resultadoMessage"></div>
+
+        <div>
+            <h1>Reservation</em></h1>
+    
+            <input type="Date" id="startDate" placeholder="Start Date">
+            <input type="Date" id="devolutionDate" placeholder="devolution Date">             
+            <br>
+            <br>
+            <button onclick="traerInformacionReservation()">Consultar</button>
+            <button onclick="guardarInformacionReservation()">Guardar</bustton>
+           
+        </div> 
+        <br>
+        <div id="resultadoReservation"></div>
+
+</body>
+</html>
