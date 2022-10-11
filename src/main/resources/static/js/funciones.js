@@ -1,6 +1,6 @@
 
-//const BASE_URL = 'http://152.70.143.130:8080'
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = 'http://152.70.143.130:8080'
+//const BASE_URL = 'http://localhost:8080'
 /*__________
 Categoria
 __________*/
