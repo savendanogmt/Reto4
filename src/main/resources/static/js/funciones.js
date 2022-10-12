@@ -131,7 +131,7 @@ __________*/
 function guardarInformacionMotorbike(){
 
     $("#resultadoMotorbike").empty();
-    let myData ={brand:$("#brandMotorbike").val(),year_b:$("#year_bMotorbike").val(),description:$("#descriptionMotorbike").val(),name:$("#nameMotorbike").val()}
+    let myData ={brand:$("#brandMotorbike").val(),year:$("#year_bMotorbike").val(),description:$("#descriptionMotorbike").val(),name:$("#nameMotorbike").val()}
     let dataToSend = JSON.stringify(myData);
 
     $.ajax ({
@@ -174,7 +174,7 @@ function pintarRespuestaMotorbike(items){
        myTable+="<tr>";
        myTable+="<td>"+items[i].id+"</td>";
        myTable+="<td>"+items[i].brand+"</td>";
-       myTable+="<td>"+items[i].year_b+"</td>";
+       myTable+="<td>"+items[i].year+"</td>";
        myTable+="<td>"+items[i].description+"</td>";
        myTable+="<td>"+items[i].name+"</td>";                              
         //myTable+="<td><button onclick='borrarMotorbike("+items[i].id+")'>Borrar</button>";
