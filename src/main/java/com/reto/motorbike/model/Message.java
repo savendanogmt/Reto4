@@ -1,17 +1,15 @@
 package com.reto.motorbike.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.*;
+
 @Entity
 @Table(name = "message")
+@Getter
+@Setter
 public class Message {
     
     @Id
@@ -30,32 +28,4 @@ public class Message {
     @JsonIgnoreProperties({"messages","reservations"})
     private Client client;
 
-    
-    
-    public Motorbike getMotorbike() {
-        return motorbike;
-    }
-    public void setMotorbike(Motorbike motorbike) {
-        this.motorbike = motorbike;
-    }
-    public Client getClient() {
-        return client;
-    }
-    public void setClient(Client client) {
-        this.client = client;
-    }
-    public Integer getIdMessage() {
-        return idMessage;
-    }
-    public void setIdMessage(Integer idMessage) {
-        this.idMessage = idMessage;
-    }
-    public String getMessageText() {
-        return messageText;
-    }
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
-    }
-  
-    
 }
