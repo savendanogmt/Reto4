@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.reto.motorbike.model.Reservation;
 
-public interface ReservationCrudRepositoryInterfaz extends CrudRepository<Reservation, Integer>{
-    
+public interface ReservationCrudRepositoryInterfaz extends CrudRepository<Reservation, Integer> {
+
 }

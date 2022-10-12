@@ -12,36 +12,38 @@ import com.reto.motorbike.service.ClientService;
 
 @RestController
 @RequestMapping("/api/Client")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE })
 public class ClientController {
-    
+
     @Autowired
     private ClientService clientService;
+
     @GetMapping("/all")
-    public List<Client> obtenerClientCompleta(){
+    public List<Client> obtenerClientCompleta() {
         return clientService.obtenerClientCompleta();
     }
 
     @GetMapping("/{id}")
-    public Optional<Client> obtenerClientId(@PathVariable("id")Integer identificador){
+    public Optional<Client> obtenerClientId(@PathVariable("id") Integer identificador) {
         return clientService.obtenerClientId(identificador);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client salvarClient(@RequestBody Client client){
+    public Client salvarClient(@RequestBody Client client) {
         return clientService.salvarClient(client);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client update(@RequestBody Client client){
+    public Client update(@RequestBody Client client) {
         return clientService.update(client);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){
+    public boolean delete(@PathVariable("id") int id) {
         return clientService.deleteClient(id);
     }
 

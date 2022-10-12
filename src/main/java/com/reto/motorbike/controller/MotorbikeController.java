@@ -12,36 +12,38 @@ import com.reto.motorbike.service.MotorbikeService;
 
 @RestController
 @RequestMapping("/api/Motorbike")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE })
 public class MotorbikeController {
-    
+
     @Autowired
     private MotorbikeService motorbikeService;
+
     @GetMapping("/all")
-    public List<Motorbike> obtenerMotorbikeCompleta(){
+    public List<Motorbike> obtenerMotorbikeCompleta() {
         return motorbikeService.obtenerMotorbikeCompleta();
     }
 
     @GetMapping("/{id}")
-    public Optional<Motorbike> obtenerMotorbikeId(@PathVariable("id")Integer identificador){
+    public Optional<Motorbike> obtenerMotorbikeId(@PathVariable("id") Integer identificador) {
         return motorbikeService.obtenerMotorbikeId(identificador);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Motorbike salvarMotorbike(@RequestBody Motorbike motorbike){
+    public Motorbike salvarMotorbike(@RequestBody Motorbike motorbike) {
         return motorbikeService.salvarMotorbike(motorbike);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Motorbike update(@RequestBody Motorbike motorbike){
+    public Motorbike update(@RequestBody Motorbike motorbike) {
         return motorbikeService.update(motorbike);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){
+    public boolean delete(@PathVariable("id") int id) {
         return motorbikeService.deleteMotorbike(id);
     }
 }

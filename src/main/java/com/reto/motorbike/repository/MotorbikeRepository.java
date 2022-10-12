@@ -11,23 +11,23 @@ import com.reto.motorbike.repository.crud.MotorbikeCrudRepositoryInterfaz;
 
 @Repository
 public class MotorbikeRepository {
-    
+
     @Autowired
     private MotorbikeCrudRepositoryInterfaz motorbikeCrudRepositoryInterfaz;
 
-    public List<Motorbike> obtenerMotorbikeCompleta(){
+    public List<Motorbike> obtenerMotorbikeCompleta() {
         return (List<Motorbike>) motorbikeCrudRepositoryInterfaz.findAll();
     }
 
-    public Optional<Motorbike> obtenerMotorbikeId(Integer id){
+    public Optional<Motorbike> obtenerMotorbikeId(Integer id) {
         return motorbikeCrudRepositoryInterfaz.findById(id);
     }
 
-    public Motorbike salvarMotorbike(Motorbike motorbike){
-        return motorbikeCrudRepositoryInterfaz.save(motorbike);     
+    public Motorbike salvarMotorbike(Motorbike motorbike) {
+        return motorbikeCrudRepositoryInterfaz.save(motorbike);
     }
 
-    public void delete (Motorbike motorbike){
+    public void delete(Motorbike motorbike) {
         motorbikeCrudRepositoryInterfaz.delete(motorbike);
     }
 }

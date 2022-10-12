@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.reto.motorbike.model.Client;
 
-public interface ClientCrudRepositoryInterfaz extends CrudRepository<Client, Integer>{
-    
+public interface ClientCrudRepositoryInterfaz extends CrudRepository<Client, Integer> {
+
 }

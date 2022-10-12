@@ -11,10 +11,10 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+
     private Integer idAdmin;
     private String email;
     private String password;
     private String name;
-    
+
 }

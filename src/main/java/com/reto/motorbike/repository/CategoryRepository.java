@@ -11,23 +11,23 @@ import com.reto.motorbike.repository.crud.CategoryCrudRepositoryInterfaz;
 
 @Repository
 public class CategoryRepository {
-    
+
     @Autowired
     private CategoryCrudRepositoryInterfaz categoryCrudRepositoryInterfaz;
 
-    public List<Category> obtenerCategoryCompleta(){
+    public List<Category> obtenerCategoryCompleta() {
         return (List<Category>) categoryCrudRepositoryInterfaz.findAll();
     }
 
-    public Optional<Category> obtenerCategoryId(Integer id){
+    public Optional<Category> obtenerCategoryId(Integer id) {
         return categoryCrudRepositoryInterfaz.findById(id);
     }
 
-    public Category salvarCategory(Category category){
-        return categoryCrudRepositoryInterfaz.save(category);     
+    public Category salvarCategory(Category category) {
+        return categoryCrudRepositoryInterfaz.save(category);
     }
 
-    public void delete (Category category){
+    public void delete(Category category) {
         categoryCrudRepositoryInterfaz.delete(category);
     }
 }

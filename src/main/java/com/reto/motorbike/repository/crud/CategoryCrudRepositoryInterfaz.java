@@ -4,7 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.reto.motorbike.model.Category;
 
-public interface CategoryCrudRepositoryInterfaz extends CrudRepository<Category, Integer>{
-    
-    
+public interface CategoryCrudRepositoryInterfaz extends CrudRepository<Category, Integer> {
+
 }

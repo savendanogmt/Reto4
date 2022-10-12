@@ -12,36 +12,38 @@ import com.reto.motorbike.service.ScoreService;
 
 @RestController
 @RequestMapping("/api/Score")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE })
 public class ScoreController {
     @Autowired
     private ScoreService scoreService;
+
     @GetMapping("/all")
-    public List<Score> obtenerScoreCompleta(){
+    public List<Score> obtenerScoreCompleta() {
         return scoreService.obtenerScoreCompleta();
     }
 
     @GetMapping("/{id}")
-    public Optional<Score> obtenerScoreId(@PathVariable("id")Integer identificador){
+    public Optional<Score> obtenerScoreId(@PathVariable("id") Integer identificador) {
         return scoreService.obtenerScoreId(identificador);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Score salvarScore(@RequestBody Score score){
+    public Score salvarScore(@RequestBody Score score) {
         return scoreService.salvarScore(score);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Score update(@RequestBody Score score){
+    public Score update(@RequestBody Score score) {
         return scoreService.update(score);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){
+    public boolean delete(@PathVariable("id") int id) {
         return scoreService.deleteScore(id);
     }
-    
+
 }

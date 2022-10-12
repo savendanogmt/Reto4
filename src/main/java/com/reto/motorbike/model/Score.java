@@ -11,7 +11,7 @@ import lombok.*;
 @Getter
 @Setter
 public class Score {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idScore;

@@ -11,62 +11,62 @@ import com.reto.motorbike.repository.ClientRepository;
 
 @Service
 public class ClientService {
-    
+
     @Autowired
     public ClientRepository clientRepository;
 
-    public List<Client> obtenerClientCompleta(){
+    public List<Client> obtenerClientCompleta() {
         return clientRepository.obtenerClientCompleta();
 
     }
 
-    public Optional<Client> obtenerClientId(Integer id){
+    public Optional<Client> obtenerClientId(Integer id) {
         return clientRepository.obtenerClientId(id);
     }
 
-    public Client salvarClient(Client client){
-        if(client.getIdClient()==null){
+    public Client salvarClient(Client client) {
+        if (client.getIdClient() == null) {
             return clientRepository.salvarClient(client);
-        }
-        else{
-            Optional <Client> clientAuxiliar = clientRepository.obtenerClientId(client.getIdClient());
-            if(clientAuxiliar.isEmpty()){
+        } else {
+            Optional<Client> clientAuxiliar = clientRepository.obtenerClientId(client.getIdClient());
+            if (clientAuxiliar.isEmpty()) {
                 return clientRepository.salvarClient(client);
-            }
-            else{
+            } else {
                 return client;
             }
         }
 
     }
 
-    public Client update(Client client){
-        if(client.getIdClient()!=null){
-            Optional<Client>e=clientRepository.obtenerClientId(client.getIdClient());
-            if(!e.isEmpty()){
-                /*if(client.getEmail()!=null){
-                    e.get().setEmail(client.getEmail());
-                }*/
-                if(client.getName()!=null){
+    public Client update(Client client) {
+        if (client.getIdClient() != null) {
+            Optional<Client> e = clientRepository.obtenerClientId(client.getIdClient());
+            if (!e.isEmpty()) {
+                /*
+                 * if(client.getEmail()!=null){
+                 * e.get().setEmail(client.getEmail());
+                 * }
+                 */
+                if (client.getName() != null) {
                     e.get().setName(client.getName());
                 }
-                if(client.getPassword()!=null){
+                if (client.getPassword() != null) {
                     e.get().setPassword(client.getPassword());
                 }
-                if(client.getAge()!=null){
+                if (client.getAge() != null) {
                     e.get().setAge(client.getAge());
                 }
                 clientRepository.salvarClient(e.get());
                 return e.get();
-            }else{
+            } else {
                 return client;
             }
-        }else {
-            return client;        
+        } else {
+            return client;
         }
     }
 
-    public boolean deleteClient (int id){
+    public boolean deleteClient(int id) {
         Boolean d = obtenerClientId(id).map(client -> {
             clientRepository.delete(client);
             return true;

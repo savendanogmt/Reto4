@@ -12,35 +12,37 @@ import com.reto.motorbike.service.ReservationService;
 
 @RestController
 @RequestMapping("/api/Reservation")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE })
 public class ReservationController {
     @Autowired
     private ReservationService reservationService;
+
     @GetMapping("/all")
-    public List<Reservation> obtenerReservationCompleta(){
+    public List<Reservation> obtenerReservationCompleta() {
         return reservationService.obtenerReservationCompleta();
     }
 
     @GetMapping("/{id}")
-    public Optional<Reservation> obtenerReservationId(@PathVariable("id")Integer identificador){
+    public Optional<Reservation> obtenerReservationId(@PathVariable("id") Integer identificador) {
         return reservationService.obtenerReservationId(identificador);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation salvarReservation(@RequestBody Reservation reservation){
+    public Reservation salvarReservation(@RequestBody Reservation reservation) {
         return reservationService.salvarReservation(reservation);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation update(@RequestBody Reservation reservation){
+    public Reservation update(@RequestBody Reservation reservation) {
         return reservationService.update(reservation);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){
+    public boolean delete(@PathVariable("id") int id) {
         return reservationService.deleteReservation(id);
     }
 }

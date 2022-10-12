@@ -11,23 +11,23 @@ import com.reto.motorbike.repository.crud.ScoreCrudRepositoryInterfaz;
 
 @Repository
 public class ScoreRepository {
-    
+
     @Autowired
     private ScoreCrudRepositoryInterfaz scoreCrudRepositoryInterfaz;
 
-    public List<Score> obtenerScoreCompleta(){
+    public List<Score> obtenerScoreCompleta() {
         return (List<Score>) scoreCrudRepositoryInterfaz.findAll();
     }
 
-    public Optional<Score> obtenerScoreId(Integer id){
+    public Optional<Score> obtenerScoreId(Integer id) {
         return scoreCrudRepositoryInterfaz.findById(id);
     }
 
-    public Score salvarScore(Score score){
-        return scoreCrudRepositoryInterfaz.save(score);     
+    public Score salvarScore(Score score) {
+        return scoreCrudRepositoryInterfaz.save(score);
     }
-    
-    public void delete (Score score){
+
+    public void delete(Score score) {
         scoreCrudRepositoryInterfaz.delete(score);
     }
 }

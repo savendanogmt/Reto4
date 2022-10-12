@@ -12,36 +12,38 @@ import com.reto.motorbike.service.AdminService;
 
 @RestController
 @RequestMapping("/api/Admin")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE })
 public class AdminController {
-    
+
     @Autowired
     private AdminService adminService;
+
     @GetMapping("/all")
-    public List<Admin> obtenerAdminCompleta(){
+    public List<Admin> obtenerAdminCompleta() {
         return adminService.obtenerAdminCompleta();
     }
 
     @GetMapping("/{id}")
-    public Optional<Admin> obtenerAdminId(@PathVariable("id")Integer identificador){
+    public Optional<Admin> obtenerAdminId(@PathVariable("id") Integer identificador) {
         return adminService.obtenerAdminId(identificador);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Admin salvarAdmin(@RequestBody Admin admin){
+    public Admin salvarAdmin(@RequestBody Admin admin) {
         return adminService.salvarAdmin(admin);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Admin update(@RequestBody Admin admin){
+    public Admin update(@RequestBody Admin admin) {
         return adminService.update(admin);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){
+    public boolean delete(@PathVariable("id") int id) {
         return adminService.deleteAdmin(id);
     }
 }

@@ -11,55 +11,52 @@ import com.reto.motorbike.repository.MessageRepository;
 
 @Service
 public class MessageService {
-    
+
     @Autowired
     public MessageRepository messageRepository;
 
-    public List<Message> obtenerMessageCompleta(){
+    public List<Message> obtenerMessageCompleta() {
         return messageRepository.obtenerMessageCompleta();
 
     }
 
-    public Optional<Message> obtenerMessageId(Integer id){
+    public Optional<Message> obtenerMessageId(Integer id) {
         return messageRepository.obtenerMessageId(id);
     }
 
-    public Message salvarMessage(Message message){
-        if(message.getIdMessage()==null){
+    public Message salvarMessage(Message message) {
+        if (message.getIdMessage() == null) {
             return messageRepository.salvarMessage(message);
-        }
-        else{
-            Optional <Message> messageAuxiliar = messageRepository.obtenerMessageId(message.getIdMessage());
-            if(messageAuxiliar.isEmpty()){
+        } else {
+            Optional<Message> messageAuxiliar = messageRepository.obtenerMessageId(message.getIdMessage());
+            if (messageAuxiliar.isEmpty()) {
                 return messageRepository.salvarMessage(message);
-            }
-            else{
+            } else {
                 return message;
             }
         }
 
     }
 
-    
-    public Message update(Message message){
-        if(message.getIdMessage()!=null){
-            Optional<Message>e=messageRepository.obtenerMessageId(message.getIdMessage());
-            if(!e.isEmpty()){   
-                if(message.getMessageText()!=null){
+    public Message update(Message message) {
+        if (message.getIdMessage() != null) {
+            Optional<Message> e = messageRepository.obtenerMessageId(message.getIdMessage());
+            if (!e.isEmpty()) {
+                if (message.getMessageText() != null) {
                     e.get().setMessageText(message.getMessageText());
                 }
-                
+
                 messageRepository.salvarMessage(e.get());
                 return e.get();
-            }else {
+            } else {
                 return message;
             }
-        }else{
+        } else {
             return message;
         }
     }
 
-    public boolean deleteMessage (int id){
+    public boolean deleteMessage(int id) {
         Boolean d = obtenerMessageId(id).map(message -> {
             messageRepository.delete(message);
             return true;

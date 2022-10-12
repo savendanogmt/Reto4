@@ -11,21 +11,21 @@ import lombok.*;
 @Getter
 @Setter
 public class Message {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+
     private Integer idMessage;
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name="motorbikeId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JoinColumn(name = "motorbikeId")
+    @JsonIgnoreProperties({ "messages", "reservations" })
     private Motorbike motorbike;
 
     @ManyToOne
-    @JoinColumn(name="clientId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties({ "messages", "reservations" })
     private Client client;
 
 }

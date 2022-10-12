@@ -13,29 +13,28 @@ import lombok.*;
 @Getter
 @Setter
 public class Motorbike {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+
     private Integer id;
     private String name;
-    private String brand;    
-    @Column(name ="years")
+    private String brand;
+    @Column(name = "years")
     private Integer year;
     private String description;
-    
+
     @ManyToOne
     @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties("motorbikes")
     private Category category;
 
-
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "motorbike")
-    @JsonIgnoreProperties({"motorbike","client"})
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "motorbike")
+    @JsonIgnoreProperties({ "motorbike", "client" })
     private List<Message> messages;
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "motorbike")
-    @JsonIgnoreProperties({"motorbike","messages"})
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "motorbike")
+    @JsonIgnoreProperties({ "motorbike", "messages" })
     public List<Reservation> reservations;
 
 }

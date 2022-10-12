@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.reto.motorbike.model.Admin;
 
-public interface AdminCrudRepositoryInterfaz extends CrudRepository<Admin, Integer>{
-    
+public interface AdminCrudRepositoryInterfaz extends CrudRepository<Admin, Integer> {
+
 }

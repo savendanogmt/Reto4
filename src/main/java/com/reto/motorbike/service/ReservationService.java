@@ -11,60 +11,59 @@ import com.reto.motorbike.repository.ReservationRepository;
 
 @Service
 public class ReservationService {
-    
+
     @Autowired
     public ReservationRepository reservationRepository;
 
-    public List<Reservation> obtenerReservationCompleta(){
+    public List<Reservation> obtenerReservationCompleta() {
         return reservationRepository.obtenerReservationCompleta();
 
     }
 
-    public Optional<Reservation> obtenerReservationId(Integer id){
+    public Optional<Reservation> obtenerReservationId(Integer id) {
         return reservationRepository.obtenerReservationId(id);
     }
 
-    public Reservation salvarReservation(Reservation reservation){
-        if(reservation.getIdReservation()==null){
+    public Reservation salvarReservation(Reservation reservation) {
+        if (reservation.getIdReservation() == null) {
             return reservationRepository.salvarReservation(reservation);
-        }
-        else{
-            Optional <Reservation> reservationAuxiliar = reservationRepository.obtenerReservationId(reservation.getIdReservation());
-            if(reservationAuxiliar.isEmpty()){
+        } else {
+            Optional<Reservation> reservationAuxiliar = reservationRepository
+                    .obtenerReservationId(reservation.getIdReservation());
+            if (reservationAuxiliar.isEmpty()) {
                 return reservationRepository.salvarReservation(reservation);
-            }
-            else{
+            } else {
                 return reservation;
             }
         }
 
     }
 
-    public Reservation update(Reservation reservation){
-        if(reservation.getIdReservation()!=null){
-            Optional<Reservation>e=reservationRepository.obtenerReservationId(reservation.getIdReservation());
-            if(!e.isEmpty()){   
-                if(reservation.getStartDate()!=null){
+    public Reservation update(Reservation reservation) {
+        if (reservation.getIdReservation() != null) {
+            Optional<Reservation> e = reservationRepository.obtenerReservationId(reservation.getIdReservation());
+            if (!e.isEmpty()) {
+                if (reservation.getStartDate() != null) {
                     e.get().setStartDate(reservation.getStartDate());
                 }
-                if(reservation.getDevolutionDate()!=null){
+                if (reservation.getDevolutionDate() != null) {
                     e.get().setDevolutionDate(reservation.getDevolutionDate());
                 }
-                if(reservation.getStatus()!=null){
+                if (reservation.getStatus() != null) {
                     e.get().setStatus(reservation.getStatus());
                 }
-                
+
                 reservationRepository.salvarReservation(e.get());
                 return e.get();
-            }else {
+            } else {
                 return reservation;
             }
-        }else{
+        } else {
             return reservation;
         }
     }
 
-    public boolean deleteReservation (int id){
+    public boolean deleteReservation(int id) {
         Boolean d = obtenerReservationId(id).map(reservation -> {
             reservationRepository.delete(reservation);
             return true;

@@ -11,59 +11,57 @@ import com.reto.motorbike.repository.AdminRepository;
 
 @Service
 public class AdminService {
-    
+
     @Autowired
     public AdminRepository adminRepository;
 
-    public List<Admin> obtenerAdminCompleta(){
+    public List<Admin> obtenerAdminCompleta() {
         return adminRepository.obtenerAdminCompleta();
 
     }
 
-    public Optional<Admin> obtenerAdminId(Integer id){
+    public Optional<Admin> obtenerAdminId(Integer id) {
         return adminRepository.obtenerAdminId(id);
     }
 
-    public Admin salvarAdmin(Admin admin){
-        if(admin.getIdAdmin()==null){
+    public Admin salvarAdmin(Admin admin) {
+        if (admin.getIdAdmin() == null) {
             return adminRepository.salvarAdmin(admin);
-        }
-        else{
-            Optional <Admin> adminAuxiliar = adminRepository.obtenerAdminId(admin.getIdAdmin());
-            if(adminAuxiliar.isEmpty()){
+        } else {
+            Optional<Admin> adminAuxiliar = adminRepository.obtenerAdminId(admin.getIdAdmin());
+            if (adminAuxiliar.isEmpty()) {
                 return adminRepository.salvarAdmin(admin);
-            }
-            else{
+            } else {
                 return admin;
             }
         }
 
     }
 
-    public Admin update(Admin admin){
-        if(admin.getIdAdmin()!=null){
-            Optional<Admin>e=adminRepository.obtenerAdminId(admin.getIdAdmin());
-            if(!e.isEmpty()){
-                if(admin.getName()!=null){
+    public Admin update(Admin admin) {
+        if (admin.getIdAdmin() != null) {
+            Optional<Admin> e = adminRepository.obtenerAdminId(admin.getIdAdmin());
+            if (!e.isEmpty()) {
+                if (admin.getName() != null) {
                     e.get().setName(admin.getName());
                 }
-                if(admin.getPassword()!=null){
+                if (admin.getPassword() != null) {
                     e.get().setPassword(admin.getPassword());
                 }
-                if(admin.getEmail()!=null){
+                if (admin.getEmail() != null) {
                     e.get().setEmail(admin.getEmail());
                 }
                 adminRepository.salvarAdmin(e.get());
                 return e.get();
-            }else{
+            } else {
                 return admin;
             }
-        }else {
-            return admin;        
+        } else {
+            return admin;
         }
     }
 
-    public boolean deleteAdmin (int id){
+    public boolean deleteAdmin(int id) {
         Boolean d = obtenerAdminId(id).map(admin -> {
             adminRepository.delete(admin);
             return true;

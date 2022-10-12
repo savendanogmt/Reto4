@@ -13,14 +13,14 @@ import lombok.*;
 @Getter
 @Setter
 public class Reservation {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
-    private String status="created";
+    private String status = "created";
 
     @ManyToOne
     @JoinColumn(name = "motorbikeId")
@@ -29,11 +29,11 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"reservations","messages"})
+    @JsonIgnoreProperties({ "reservations", "messages" })
     private Client client;
 
-    @OneToOne(cascade = {CascadeType.REMOVE},mappedBy="reservation")
+    @OneToOne(cascade = { CascadeType.REMOVE }, mappedBy = "reservation")
     @JsonIgnoreProperties("reservation")
     private Score score;
- 
+
 }

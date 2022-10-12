@@ -11,43 +11,41 @@ import com.reto.motorbike.repository.CategoryRepository;
 
 @Service
 public class CategoryService {
-    
+
     @Autowired
     public CategoryRepository categoryRepository;
 
-    public List<Category> obtenerCategoryCompleta(){
+    public List<Category> obtenerCategoryCompleta() {
         return categoryRepository.obtenerCategoryCompleta();
 
     }
 
-    public Optional<Category> obtenerCategoryId(Integer id){
+    public Optional<Category> obtenerCategoryId(Integer id) {
         return categoryRepository.obtenerCategoryId(id);
     }
 
-    public Category salvarCategory(Category category){
-        if(category.getId()==null){
+    public Category salvarCategory(Category category) {
+        if (category.getId() == null) {
             return categoryRepository.salvarCategory(category);
-        }
-        else{
-            Optional <Category> categoryAuxiliar = categoryRepository.obtenerCategoryId(category.getId());
-            if(categoryAuxiliar.isEmpty()){
+        } else {
+            Optional<Category> categoryAuxiliar = categoryRepository.obtenerCategoryId(category.getId());
+            if (categoryAuxiliar.isEmpty()) {
                 return categoryRepository.salvarCategory(category);
-            }
-            else{
+            } else {
                 return category;
             }
         }
 
     }
 
-    public Category update(Category category){
-        if(category.getId()!=null){
-            Optional<Category>g=categoryRepository.obtenerCategoryId(category.getId());
-            if(!g.isEmpty()){
-                if(category.getDescription()!=null){
+    public Category update(Category category) {
+        if (category.getId() != null) {
+            Optional<Category> g = categoryRepository.obtenerCategoryId(category.getId());
+            if (!g.isEmpty()) {
+                if (category.getDescription() != null) {
                     g.get().setDescription(category.getDescription());
                 }
-                if(category.getName()!=null){
+                if (category.getName() != null) {
                     g.get().setName(category.getName());
                 }
                 return categoryRepository.salvarCategory(g.get());
@@ -56,7 +54,7 @@ public class CategoryService {
         return category;
     }
 
-    public boolean deleteCategory (int id){
+    public boolean deleteCategory(int id) {
         Boolean d = obtenerCategoryId(id).map(category -> {
             categoryRepository.delete(category);
             return true;
@@ -64,7 +62,5 @@ public class CategoryService {
         }).orElse(false);
         return d;
     }
-
-
 
 }
