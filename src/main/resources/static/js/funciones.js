@@ -54,8 +54,8 @@ function pintarRespuestaCategory(items) {
         myTable += "<td>" + items[i].id + "</td>";
         myTable += "<td>" + items[i].name + "</td>";
         myTable += "<td>" + items[i].description + "</td>";
-        myTable+="<td><button onclick='borrarCategory("+items[i].id+")'>Borrar</button>";
-        myTable+="<td><button onclick='actualizarCategory("+items[i].id+")'>Actualizar</button>";
+        myTable += "<td><button onclick='borrarCategory(" + items[i].id + ")'>Borrar</button>";
+        myTable += "<td><button onclick='actualizarCategory(" + items[i].id + ")'>Actualizar</button>";
         myTable += "</tr>";
 
     }
@@ -63,50 +63,52 @@ function pintarRespuestaCategory(items) {
     $("#resultadoCategory").append(myTable);
 }
 
-function borrarCategory(idElemento){
-    
-    $.ajax ({
-            url: BASE_URL + '/api/Category/' + idElemento,
-            type: 'DELETE',
-            datatype: "JSON",
-            success: function(respuesta){
+function borrarCategory(idElemento) {
+
+    $.ajax({
+        url: BASE_URL + '/api/Category/' + idElemento,
+        type: 'DELETE',
+        datatype: "JSON",
+        success: function (respuesta) {
             // console.log(respuesta);
             traerInformacionCategory();
             alert("Borrado exitoso");
-            },
-            error:function(xhr,status){                                
-            alert('Operacion no satisfactoria,'+ xhr.status );
-            }
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
         }
+    }
     );
 }
 
-function limpiarCategory(){
-	$("#nameCategory").val("");
-	$("#descripcionCategory").val("");
-}
-
-function actualizarCategory(idElemento){
+function actualizarCategory(idElemento) {
 
     $("#resultado").empty();
-
-    let myData ={id:idElemento, name:$("#nameCategory").val(),description:$("#descripcionCategory").val()}
+    
+    let myData = { id: idElemento, name: $("#nameCategory").val(), description: $("#descripcionCategory").val() }
     let dataToSend = JSON.stringify(myData);
 
-    $.ajax ({
-            url: BASE_URL + '/api/Category/update',
-            type: 'PUT',
-            data: dataToSend,
-            datatype: "JSON",
-            contentType: 'application/json',
-            success:function(respuesta){
+    $.ajax({
+        url: BASE_URL + '/api/Category/update',
+        type: 'PUT',
+        data: dataToSend,
+        datatype: "JSON",
+        contentType: 'application/json',
+        success: function (respuesta) {
+            traerInformacionCategory();
+            limpiarCategory();
             alert("Actualizacion exitosa");
-            },
-            error:function(xhr,status){
-            alert('Operacion no satisfactoria,'+ xhr.status );
-            }
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
         }
+    }
     );
+}
+
+function limpiarCategory() {
+    $("#nameCategory").val("");
+    $("#descripcionCategory").val("");
 }
 
 /*__________
@@ -115,7 +117,7 @@ __________*/
 
 function guardarInformacionClient() {
 
-    $("#resultadoClient").empty();
+    $("#resultado").empty();
     let myData = { email: $("#emailClient").val(), password: $("#passwordClient").val(), name: $("#nameClient").val(), age: $("#ageClient").val(), }
     let dataToSend = JSON.stringify(myData);
 
@@ -126,6 +128,8 @@ function guardarInformacionClient() {
         datatype: "JSON",
         contentType: 'application/json',
         success: function (respuesta) {
+            traerInformacionClient();
+            limpiarClient();
             console.log(respuesta);
             alert("Inserción exitosa");
         },
@@ -162,8 +166,8 @@ function pintarRespuestaClient(items) {
         myTable += "<td>" + items[i].password + "</td>";
         myTable += "<td>" + items[i].name + "</td>";
         myTable += "<td>" + items[i].age + "</td>";
-        //myTable+="<td><button onclick='deleteClient("+items[i].id+")'>delete</button>";
-        //myTable+="<td><button onclick='updateClient("+items[i].id+")'>update</button>";
+        myTable += "<td><button onclick='borrarClient(" + items[i].idClient + ")'>Borrar</button>";
+        myTable += "<td><button onclick='actualizarClient(" + items[i].idClient + ")'>Actualizar</button>";
         myTable += "</tr>";
 
     }
@@ -172,11 +176,54 @@ function pintarRespuestaClient(items) {
 
 }
 
-function limpiarClient(){
-	$("#idCliente").val("");
-	$("#nombreCliente").val("");
-	$("#emailCliente").val("");
-	$("#edadCliente").val("");
+function borrarClient(idElemento) {
+
+    $.ajax({
+        url: BASE_URL + '/api/Client/' + idElemento,
+        type: 'DELETE',
+        datatype: "JSON",
+        success: function (respuesta) {
+            // console.log(respuesta);
+            traerInformacionClient();
+            alert("Borrado exitoso");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function actualizarClient(idElemento) {
+
+    $("#resultado").empty();
+
+    let myData = { idClient: idElemento, email: $("#emailClient").val(), password: $("#passwordClient").val(), name: $("#nameClient").val(), age: $("#ageClient").val(),}
+    let dataToSend = JSON.stringify(myData);
+
+    $.ajax({
+        url: BASE_URL + '/api/Client/update',
+        type: 'PUT',
+        data: dataToSend,
+        datatype: "JSON",
+        contentType: 'application/json',
+        success: function (respuesta) {
+            traerInformacionClient();
+            limpiarClient();
+            alert("Actualizacion exitosa");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function limpiarClient() {
+    $("#emailClient").val("");
+    $("#nameClient").val("");
+    $("#passwordClient").val("");
+    $("#ageClient").val("");
 }
 
 /*__________
