@@ -316,7 +316,7 @@ __________*/
 function guardarInformacionScore() {
 
     $("#resultadoScore").empty();
-    let myData = { stars: $("#stars").val(), messageText: $("#messageText").val(), }
+    let myData = { stars: $("#stars").val(), messageText: $("#messageTextS").val(), }
     let dataToSend = JSON.stringify(myData);
 
     $.ajax({
