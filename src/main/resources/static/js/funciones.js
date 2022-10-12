@@ -19,6 +19,7 @@ function guardarInformacionCategory() {
         contentType: 'application/json',
         success: function (respuesta) {
             limpiarCategory();
+            traerInformacionCategory();
             console.log(respuesta);
             alert("Inserción exitosa");
         },
@@ -85,6 +86,28 @@ function limpiarCategory(){
 	$("#descripcionCategory").val("");
 }
 
+function actualizarCategory(idElemento){
+
+    $("#resultado").empty();
+
+    let myData ={id:idElemento, name:$("#nameCategory").val(),description:$("#descripcionCategory").val()}
+    let dataToSend = JSON.stringify(myData);
+
+    $.ajax ({
+            url: BASE_URL + '/api/Category/update',
+            type: 'PUT',
+            data: dataToSend,
+            datatype: "JSON",
+            contentType: 'application/json',
+            success:function(respuesta){
+            alert("Actualizacion exitosa");
+            },
+            error:function(xhr,status){
+            alert('Operacion no satisfactoria,'+ xhr.status );
+            }
+        }
+    );
+}
 
 /*__________
 Cliente
