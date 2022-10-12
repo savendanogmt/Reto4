@@ -6,7 +6,7 @@ Categoria
 __________*/
 
 function guardarInformacionCategory() {
-
+    
     $("#resultadoCategory").empty();
     let myData = { name: $("#nameCategory").val(), description: $("#descripcionCategory").val(), }
     let dataToSend = JSON.stringify(myData);
@@ -197,8 +197,8 @@ function borrarClient(idElemento) {
 function actualizarClient(idElemento) {
 
     $("#resultado").empty();
-
-    let myData = { idClient: idElemento, email: $("#emailClient").val(), password: $("#passwordClient").val(), name: $("#nameClient").val(), age: $("#ageClient").val(),}
+    
+    let myData = { idClient: idElemento, email: $("#emailClient").val(), password: $("#passwordClient").val(), name: $("#nameClient").val(), age: $("#ageClient").val() }
     let dataToSend = JSON.stringify(myData);
 
     $.ajax({
