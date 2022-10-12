@@ -38,7 +38,7 @@ public class MotorbikeService {
 
     }
 
-    public Motorbike update(Motorbike motorbike) {
+    public Motorbike updateMotorbike(Motorbike motorbike) {
         if (motorbike.getId() != null) {
             Optional<Motorbike> e = motorbikeRepository.obtenerMotorbikeId(motorbike.getId());
             if (!e.isEmpty()) {

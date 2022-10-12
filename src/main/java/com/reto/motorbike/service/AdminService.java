@@ -38,7 +38,7 @@ public class AdminService {
 
     }
 
-    public Admin update(Admin admin) {
+    public Admin updateAdmin(Admin admin) {
         if (admin.getIdAdmin() != null) {
             Optional<Admin> e = adminRepository.obtenerAdminId(admin.getIdAdmin());
             if (!e.isEmpty()) {

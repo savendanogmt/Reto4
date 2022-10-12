@@ -38,7 +38,7 @@ public class MessageControler {
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Message update(@RequestBody Message message) {
-        return messageService.update(message);
+        return messageService.updateMessage(message);
     }
 
     @DeleteMapping("/{id}")

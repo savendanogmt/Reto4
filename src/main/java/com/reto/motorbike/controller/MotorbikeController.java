@@ -38,7 +38,7 @@ public class MotorbikeController {
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Motorbike update(@RequestBody Motorbike motorbike) {
-        return motorbikeService.update(motorbike);
+        return motorbikeService.updateMotorbike(motorbike);
     }
 
     @DeleteMapping("/{id}")

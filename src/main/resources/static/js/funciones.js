@@ -18,6 +18,7 @@ function guardarInformacionCategory() {
         datatype: "JSON",
         contentType: 'application/json',
         success: function (respuesta) {
+            limpiarCategory();
             console.log(respuesta);
             alert("Inserción exitosa");
         },
@@ -52,14 +53,38 @@ function pintarRespuestaCategory(items) {
         myTable += "<td>" + items[i].id + "</td>";
         myTable += "<td>" + items[i].name + "</td>";
         myTable += "<td>" + items[i].description + "</td>";
-        //myTable+="<td><button onclick='borrarCategory("+items[i].id+")'>Borrar</button>";
-        //myTable+="<td><button onclick='actualizarCategory("+items[i].id+")'>Actualizar</button>";
+        myTable+="<td><button onclick='borrarCategory("+items[i].id+")'>Borrar</button>";
+        myTable+="<td><button onclick='actualizarCategory("+items[i].id+")'>Actualizar</button>";
         myTable += "</tr>";
 
     }
     myTable += "</table>";
     $("#resultadoCategory").append(myTable);
 }
+
+function borrarCategory(idElemento){
+    
+    $.ajax ({
+            url: BASE_URL + '/api/Category/' + idElemento,
+            type: 'DELETE',
+            datatype: "JSON",
+            success: function(respuesta){
+            // console.log(respuesta);
+            traerInformacionCategory();
+            alert("Borrado exitoso");
+            },
+            error:function(xhr,status){                                
+            alert('Operacion no satisfactoria,'+ xhr.status );
+            }
+        }
+    );
+}
+
+function limpiarCategory(){
+	$("#nameCategory").val("");
+	$("#descripcionCategory").val("");
+}
+
 
 /*__________
 Cliente
@@ -114,14 +139,21 @@ function pintarRespuestaClient(items) {
         myTable += "<td>" + items[i].password + "</td>";
         myTable += "<td>" + items[i].name + "</td>";
         myTable += "<td>" + items[i].age + "</td>";
-        //myTable+="<td><button onclick='borrarClient("+items[i].id+")'>Borrar</button>";
-        //myTable+="<td><button onclick='actualizarClient("+items[i].id+")'>Actualizar</button>";
+        //myTable+="<td><button onclick='deleteClient("+items[i].id+")'>delete</button>";
+        //myTable+="<td><button onclick='updateClient("+items[i].id+")'>update</button>";
         myTable += "</tr>";
 
     }
     myTable += "</table>";
     $("#resultadoClient").append(myTable);
 
+}
+
+function limpiarClient(){
+	$("#idCliente").val("");
+	$("#nombreCliente").val("");
+	$("#emailCliente").val("");
+	$("#edadCliente").val("");
 }
 
 /*__________
@@ -177,8 +209,8 @@ function pintarRespuestaMotorbike(items) {
         myTable += "<td>" + items[i].year + "</td>";
         myTable += "<td>" + items[i].description + "</td>";
         myTable += "<td>" + items[i].name + "</td>";
-        //myTable+="<td><button onclick='borrarMotorbike("+items[i].id+")'>Borrar</button>";
-        //myTable+="<td><button onclick='actualizarMotorbike("+items[i].id+")'>Actualizar</button>";
+        //myTable+="<td><button onclick='deleteMotorbike("+items[i].id+")'>delete</button>";
+        //myTable+="<td><button onclick='updateMotorbike("+items[i].id+")'>update</button>";
         myTable += "</tr>";
 
     }
@@ -238,8 +270,8 @@ function pintarRespuestaMessage(items) {
         myTable += "<td>" + items[i].idMessage + "</td>";
         myTable += "<td>" + items[i].messageText + "</td>";
 
-        //myTable+="<td><button onclick='borrarMessage("+items[i].id+")'>Borrar</button>";
-        //myTable+="<td><button onclick='actualizarMessage("+items[i].id+")'>Actualizar</button>";
+        //myTable+="<td><button onclick='deleteMessage("+items[i].id+")'>delete</button>";
+        //myTable+="<td><button onclick='updateMessage("+items[i].id+")'>update</button>";
         myTable += "</tr>";
 
     }
@@ -299,8 +331,8 @@ function pintarRespuestaReservation(items) {
         myTable += "<td>" + items[i].idReservation + "</td>";
         myTable += "<td>" + items[i].startDate + "</td>";
         myTable += "<td>" + items[i].devolutionDate + "</td>";
-        //myTable+="<td><button onclick='borrarReservation("+items[i].id+")'>Borrar</button>";
-        //myTable+="<td><button onclick='actualizarReservation("+items[i].id+")'>Actualizar</button>";
+        //myTable+="<td><button onclick='deleteReservation("+items[i].id+")'>delete</button>";
+        //myTable+="<td><button onclick='updateReservation("+items[i].id+")'>update</button>";
         myTable += "</tr>";
 
     }
@@ -360,8 +392,8 @@ function pintarRespuestaScore(items) {
         myTable += "<td>" + items[i].idScore + "</td>";
         myTable += "<td>" + items[i].stars + "</td>";
         myTable += "<td>" + items[i].messageText + "</td>";
-        //myTable+="<td><button onclick='borrarScore("+items[i].id+")'>Borrar</button>";
-        //myTable+="<td><button onclick='actualizarScore("+items[i].id+")'>Actualizar</button>";
+        //myTable+="<td><button onclick='deleteScore("+items[i].id+")'>delete</button>";
+        //myTable+="<td><button onclick='updateScore("+items[i].id+")'>update</button>";
         myTable += "</tr>";
 
     }
@@ -422,8 +454,8 @@ function pintarRespuestaAdmin(items) {
         myTable += "<td>" + items[i].email + "</td>";
         myTable += "<td>" + items[i].password + "</td>";
         myTable += "<td>" + items[i].name + "</td>";
-        //myTable+="<td><button onclick='borrarAdmin("+items[i].id+")'>Borrar</button>";
-        //myTable+="<td><button onclick='actualizarAdmin("+items[i].id+")'>Actualizar</button>";
+        //myTable+="<td><button onclick='deleteAdmin("+items[i].id+")'>delete</button>";
+        //myTable+="<td><button onclick='updateAdmin("+items[i].id+")'>update</button>";
         myTable += "</tr>";
 
     }

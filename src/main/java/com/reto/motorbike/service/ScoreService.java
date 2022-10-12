@@ -38,7 +38,7 @@ public class ScoreService {
 
     }
 
-    public Score update(Score score) {
+    public Score updateScore(Score score) {
         if (score.getIdScore() != null) {
             Optional<Score> e = scoreRepository.obtenerScoreId(score.getIdScore());
             if (!e.isEmpty()) {
