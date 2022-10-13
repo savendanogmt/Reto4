@@ -59,12 +59,12 @@ public class ScoreService {
         }
     }
 
-    public boolean deleteScore(int id) {
+    /*public boolean deleteScore(int id) {
         Boolean d = obtenerScoreId(id).map(score -> {
             scoreRepository.delete(score);
             return true;
 
         }).orElse(false);
         return d;
-    }
+    }*/
 }

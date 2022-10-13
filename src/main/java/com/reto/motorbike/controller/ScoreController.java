@@ -39,11 +39,11 @@ public class ScoreController {
     public Score update(@RequestBody Score score) {
         return scoreService.updateScore(score);
     }
-
+    /* 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id) {
         return scoreService.deleteScore(id);
-    }
+    }*/
 
 }

@@ -49,7 +49,7 @@ function pintarRespuestaScore(items) {
         myTable += "<td>" + items[i].idScore + "</td>";
         myTable += "<td>" + items[i].stars + "</td>";
         myTable += "<td>" + items[i].messageText + "</td>";
-        myTable+="<td><button onclick='borrarScore("+items[i].idScore+")'>Borrar</button>";
+        //myTable+="<td><button onclick='borrarScore("+items[i].idScore+")'>Borrar</button>";
         myTable+="<td><button onclick='actualizarScore("+items[i].idScore+")'>Actualizar</button>";
         myTable += "</tr>";
 
@@ -59,6 +59,7 @@ function pintarRespuestaScore(items) {
 
 }
 
+/*
 function borrarScore(idElemento) {
 
     $.ajax({
@@ -75,7 +76,7 @@ function borrarScore(idElemento) {
         }
     }
     );
-}
+}*/
 
 function actualizarScore(idElemento) {
 
