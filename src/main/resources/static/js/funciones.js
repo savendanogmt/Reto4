@@ -470,6 +470,8 @@ function guardarInformacionReservation() {
         datatype: "JSON",
         contentType: 'application/json',
         success: function (respuesta) {
+            traerInformacionReservation();
+            limpiarReservation();
             console.log(respuesta);
             alert("Inserción exitosa");
         },
@@ -504,14 +506,62 @@ function pintarRespuestaReservation(items) {
         myTable += "<td>" + items[i].idReservation + "</td>";
         myTable += "<td>" + items[i].startDate + "</td>";
         myTable += "<td>" + items[i].devolutionDate + "</td>";
-        //myTable+="<td><button onclick='deleteReservation("+items[i].id+")'>delete</button>";
-        //myTable+="<td><button onclick='updateReservation("+items[i].id+")'>update</button>";
+        myTable+="<td><button onclick='borrarReservation("+items[i].idReservation+")'>Borrar</button>";
+        myTable+="<td><button onclick='actualizarReservation("+items[i].idReservation+")'>Actualizar</button>";
         myTable += "</tr>";
 
     }
     myTable += "</table>";
     $("#resultadoReservation").append(myTable);
 
+}
+
+function borrarReservation(idElemento) {
+
+    $.ajax({
+        url: BASE_URL + '/api/Reservation/' + idElemento,
+        type: 'DELETE',
+        datatype: "JSON",
+        success: function (respuesta) {
+            // console.log(respuesta);
+            traerInformacionReservation();
+            alert("Borrado exitoso");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function actualizarReservation(idElemento) {
+
+    $("#resultado").empty();
+    
+    let myData = { idReservation: idElemento, startDate: $("#startDate").val(), devolutionDate: $("#devolutionDate").val() }
+    let dataToSend = JSON.stringify(myData);
+
+    $.ajax({
+        url: BASE_URL + '/api/Reservation/update',
+        type: 'PUT',
+        data: dataToSend,
+        datatype: "JSON",
+        contentType: 'application/json',
+        success: function (respuesta) {
+            traerInformacionReservation();
+            limpiarReservation();
+            alert("Actualizacion exitosa");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function limpiarReservation() {
+    $("#startDate").val("");
+    $("#devolutionDate").val("");
 }
 
 /*__________
@@ -531,6 +581,8 @@ function guardarInformacionScore() {
         datatype: "JSON",
         contentType: 'application/json',
         success: function (respuesta) {
+            traerInformacionScore();
+            limpiarScore();
             console.log(respuesta);
             alert("Inserción exitosa");
         },
@@ -565,8 +617,8 @@ function pintarRespuestaScore(items) {
         myTable += "<td>" + items[i].idScore + "</td>";
         myTable += "<td>" + items[i].stars + "</td>";
         myTable += "<td>" + items[i].messageText + "</td>";
-        //myTable+="<td><button onclick='deleteScore("+items[i].id+")'>delete</button>";
-        //myTable+="<td><button onclick='updateScore("+items[i].id+")'>update</button>";
+        myTable+="<td><button onclick='borrarScore("+items[i].idScore+")'>Borrar</button>";
+        myTable+="<td><button onclick='actualizarScore("+items[i].idScore+")'>Actualizar</button>";
         myTable += "</tr>";
 
     }
@@ -574,6 +626,55 @@ function pintarRespuestaScore(items) {
     $("#resultadoScore").append(myTable);
 
 }
+
+function borrarScore(idElemento) {
+
+    $.ajax({
+        url: BASE_URL + '/api/Score/' + idElemento,
+        type: 'DELETE',
+        datatype: "JSON",
+        success: function (respuesta) {
+            // console.log(respuesta);
+            traerInformacionScore();
+            alert("Borrado exitoso");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function actualizarScore(idElemento) {
+
+    $("#resultado").empty();
+    
+    let myData = { idScore: idElemento, stars: $("#stars").val(), messageText: $("#messageTextS").val() }
+    let dataToSend = JSON.stringify(myData);
+
+    $.ajax({
+        url: BASE_URL + '/api/Score/update',
+        type: 'PUT',
+        data: dataToSend,
+        datatype: "JSON",
+        contentType: 'application/json',
+        success: function (respuesta) {
+            traerInformacionScore();
+            limpiarScore();
+            alert("Actualizacion exitosa");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function limpiarScore() {
+    $("#stars").val("");
+    $("#messageTextS").val("");
+}
+
 
 /*__________
 Admin
@@ -592,6 +693,8 @@ function guardarInformacionAdmin() {
         datatype: "JSON",
         contentType: 'application/json',
         success: function (respuesta) {
+            traerInformacionAdmin();
+            limpiarAdmin();
             console.log(respuesta);
             alert("Inserción exitosa");
         },
@@ -627,12 +730,63 @@ function pintarRespuestaAdmin(items) {
         myTable += "<td>" + items[i].email + "</td>";
         myTable += "<td>" + items[i].password + "</td>";
         myTable += "<td>" + items[i].name + "</td>";
-        //myTable+="<td><button onclick='deleteAdmin("+items[i].id+")'>delete</button>";
-        //myTable+="<td><button onclick='updateAdmin("+items[i].id+")'>update</button>";
+        myTable+="<td><button onclick='borrarAdmin("+items[i].idAdmin+")'>Borrar</button>";
+        myTable+="<td><button onclick='actualizarAdmin("+items[i].idAdmin+")'>Actualizar</button>";
         myTable += "</tr>";
 
     }
     myTable += "</table>";
     $("#resultadoAdmin").append(myTable);
 
+}
+
+
+function borrarAdmin(idElemento) {
+
+    $.ajax({
+        url: BASE_URL + '/api/Admin/' + idElemento,
+        type: 'DELETE',
+        datatype: "JSON",
+        success: function (respuesta) {
+            // console.log(respuesta);
+            traerInformacionAdmin();
+            alert("Borrado exitoso");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function actualizarAdmin(idElemento) {
+
+    $("#resultado").empty();
+    
+    let myData = { idAdmin: idElemento, email: $("#emailAdmin").val(), password: $("#passwordAdmin").val(), name: $("#nameAdmin").val(), age: $("#ageAdmin").val() }
+    let dataToSend = JSON.stringify(myData);
+
+    $.ajax({
+        url: BASE_URL + '/api/Admin/update',
+        type: 'PUT',
+        data: dataToSend,
+        datatype: "JSON",
+        contentType: 'application/json',
+        success: function (respuesta) {
+            traerInformacionAdmin();
+            limpiarAdmin();
+            alert("Actualizacion exitosa");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function limpiarAdmin() {
+    $("#emailAdmin").val("");
+    $("#nameAdmin").val("");
+    $("#passwordAdmin").val("");
+    $("#ageAdmin").val("");
 }
