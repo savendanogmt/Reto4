@@ -359,6 +359,8 @@ function guardarInformacionMessage() {
         datatype: "JSON",
         contentType: 'application/json',
         success: function (respuesta) {
+            limpiarMessage();
+            traerInformacionMessage();
             console.log(respuesta);
             alert("Inserción exitosa");
         },
@@ -393,14 +395,62 @@ function pintarRespuestaMessage(items) {
         myTable += "<td>" + items[i].idMessage + "</td>";
         myTable += "<td>" + items[i].messageText + "</td>";
 
-        //myTable+="<td><button onclick='deleteMessage("+items[i].id+")'>delete</button>";
-        //myTable+="<td><button onclick='updateMessage("+items[i].id+")'>update</button>";
+        myTable+="<td><button onclick='borrarMessage("+items[i].idMessage+")'>Borrar</button>";
+        myTable+="<td><button onclick='actualizarMessage("+items[i].idMessage+")'>Actualizar</button>";
         myTable += "</tr>";
 
     }
     myTable += "</table>";
     $("#resultadoMessage").append(myTable);
 
+}
+
+
+function borrarMessage(idElemento) {
+
+    $.ajax({
+        url: BASE_URL + '/api/Message/' + idElemento,
+        type: 'DELETE',
+        datatype: "JSON",
+        success: function (respuesta) {
+            // console.log(respuesta);
+            traerInformacionMessage();
+            alert("Borrado exitoso");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function actualizarMessage(idElemento) {
+
+    $("#resultado").empty();
+    
+    let myData = { idMessage: idElemento, messageText: $("#messageText").val() }
+    let dataToSend = JSON.stringify(myData);
+
+    $.ajax({
+        url: BASE_URL + '/api/Message/update',
+        type: 'PUT',
+        data: dataToSend,
+        datatype: "JSON",
+        contentType: 'application/json',
+        success: function (respuesta) {
+            traerInformacionMessage();
+            limpiarMessage();
+            alert("Actualizacion exitosa");
+        },
+        error: function (xhr, status) {
+            alert('Operacion no satisfactoria,' + xhr.status);
+        }
+    }
+    );
+}
+
+function limpiarMessage() {
+    $("#messageText").val("");
 }
 
 /*__________
