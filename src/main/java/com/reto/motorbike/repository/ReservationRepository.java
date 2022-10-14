@@ -2,6 +2,7 @@ package com.reto.motorbike.repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,5 +30,18 @@ public class ReservationRepository {
 
     public void delete(Reservation reservation) {
         reservationCrudRepositoryInterfaz.delete(reservation);
+    }
+
+    public List<Reservation> ReservacionStatus(String status){
+        return reservationCrudRepositoryInterfaz.findAllByStatus(status);
+    }
+
+    public List<Reservation> ReservacionTiempo(Date fechaInicial, Date fechaFinal){
+        return reservationCrudRepositoryInterfaz.findAllByStartDateAfterAndStartDateBefore(fechaInicial, fechaFinal);
+    }
+
+    public List<Object[]> ReporteClientes(String estadoCompletado) {
+        return reservationCrudRepositoryInterfaz.ReporteClientes(estadoCompletado);
+
     }
 }

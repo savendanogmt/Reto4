@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import com.reto.motorbike.model.Reservation;
+import com.reto.motorbike.reports.ContadorClientes;
+import com.reto.motorbike.reports.StatusReservas;
 import com.reto.motorbike.service.ReservationService;
 
 @RestController
@@ -44,5 +46,20 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id) {
         return reservationService.deleteReservation(id);
+    }
+
+    @GetMapping("/report-status")
+    public StatusReservas getStatusReservas() {
+        return reservationService.ReservacionStatus();
+    }
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservasTiempo(@PathVariable("dateOne") String fechaInicial,@PathVariable("dateTwo") String fechaFinal) {
+        return reservationService.ReservacionTiempo(fechaInicial, fechaFinal);
+    }
+
+    @GetMapping("/report-clients")
+    public List<ContadorClientes> getClientes() {
+        return reservationService.reporteClientes();
     }
 }
