@@ -18,8 +18,7 @@ public interface ReservationCrudRepositoryInterfaz extends CrudRepository<Reserv
                              
 
     //Top de los clientes le han dejado más dinero a la compañia
-
-    @Query("SELECT c.client, COUNT(c.client) from Reservation  AS c  where c.status=:n group by c.client order by COUNT(c.client)DESC ")
+    @Query("SELECT c.client, COUNT(c.client) from Reservation  AS c group by c.client order by COUNT(c.client)DESC ")
     public List<Object[]> ReporteClientes(@Param("n")String estadoCompletado);
 
 
