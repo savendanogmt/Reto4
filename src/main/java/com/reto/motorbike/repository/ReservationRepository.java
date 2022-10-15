@@ -40,8 +40,9 @@ public class ReservationRepository {
         return reservationCrudRepositoryInterfaz.findAllByStartDateAfterAndStartDateBefore(fechaInicial, fechaFinal);
     }
 
-    public List<Object[]> ReporteClientes(String estadoCompletado) {
-        return reservationCrudRepositoryInterfaz.ReporteClientes(estadoCompletado);
+    public List<Object[]> ReporteClientes() {
+        return reservationCrudRepositoryInterfaz.ReporteClientes();
 
     }
+
 }

@@ -103,12 +103,12 @@ public class ReservationService {
         }
     }
 
-    public List<ContadorClientes> reporteClientes() {
-        String estadoCompletado = "completed";
+
+    public List<ContadorClientes> reporteClientes() {        
         List<ContadorClientes> resultado = new ArrayList<>();
-        List<Object[]> reporte = reservationRepository.ReporteClientes(estadoCompletado);
+        List<Object[]> reporte = reservationRepository.ReporteClientes();
         System.out.println(reporte);
-        for (int i = 0; i <= reporte.size(); i++) {
+        for (int i = 0; i < reporte.size(); i++) {
             resultado.add(new ContadorClientes((Long) reporte.get(i)[1], (Client) reporte.get(i)[0]));
         }
         return resultado;
